@@ -83,7 +83,7 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rwflick$personal_db',          # Your PA username$db_name
+        'NAME': 'rwflick$default',          # Your PA username$db_name
         'USER': 'rwflick',                     # Your PA username
         'PASSWORD': 'JohnMarie8826!',     # The DB password you just set
         'HOST': 'rwflick.mysql.pythonanywhere-services.com', # Your DB host address
