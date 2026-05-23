@@ -1,4 +1,6 @@
 from pathlib import Path
+import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,16 +82,27 @@ TEMPLATES = [
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# 1. Define your local SQLite database as the default fallback
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rwflick$default',          # Your PA username$db_name
-        'USER': 'rwflick',                     # Your PA username
-        'PASSWORD': 'JohnMarie8826!',     # The DB password you just set
-        'HOST': 'rwflick.mysql.pythonanywhere-services.com', # Your DB host address
-        'PORT': '3306',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# 2. Automatically swap to MySQL ONLY if running inside PythonAnywhere
+# (PythonAnywhere natively populates the 'PYTHONANYWHERE_DOMAIN' environment variable)
+if "PYTHONANYWHERE_DOMAIN" in os.environ:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": "rwflick$personal_db",
+            "USER": "rwflick",
+            "PASSWORD": "your-mysql-password",  # Replace with your actual database password
+            "HOST": "rwflick.mysql.pythonanywhere-services.com",
+            "PORT": "3306",
+        }
+    }
 
 # For Docker/PostgreSQL usage uncomment this and comment the DATABASES config above
 # DATABASES = {
