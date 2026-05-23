@@ -96,9 +96,9 @@ if "PYTHONANYWHERE_DOMAIN" in os.environ:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
-            "NAME": "rwflick$personal_db",
+            "NAME": "rwflick$default",
             "USER": "rwflick",
-            "PASSWORD": "your-mysql-password",  # Replace with your actual database password
+            "PASSWORD": "JohnMarie8826!",  # Replace with your actual database password
             "HOST": "rwflick.mysql.pythonanywhere-services.com",
             "PORT": "3306",
         }
